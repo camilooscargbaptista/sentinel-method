@@ -371,6 +371,7 @@ function traceCycle(
   const pathSet = new Set([start]);
   let current = start;
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const neighbors = graph.get(current) ?? new Set();
     const next = Array.from(neighbors).find(n => cycleSet.has(n) && !pathSet.has(n));

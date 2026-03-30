@@ -855,7 +855,7 @@ function showModal(g){
   if(!data)return;
   var p=JSON.parse(data.textContent);
   var tabs={'context':'Context','bdd':p.issues?'BDD':'','tdd':p.issues?'TDD':'','tasks':'Tasks','solid':'SOLID','agent':'Agent'};
-  var tabsHtml=Object.keys(tabs).map(function(t){return tabs[t]?'<div class="modal-tab'+(t==='context'?' active':'')+'" onclick="switchTab('+g+',\''+t+'\')" style="cursor:pointer">'+tabs[t]+'</div>':''}).join('');
+  var tabsHtml=Object.keys(tabs).map(function(t){return tabs[t]?'<div class="modal-tab'+(t==='context'?' active':'')+'" onclick="switchTab('+g+',"'+t+'")" style="cursor:pointer">'+tabs[t]+'</div>':''}).join('');
   var specsSeen={};
   specsSeen.context=buildContext(p);
   specsSeen.bdd=buildBDD(p,VCtx[p.validator]||defaultCtx);
@@ -878,7 +878,7 @@ function createModal(){
   var overlay=document.createElement('div');
   overlay.id='modalOverlay';
   overlay.className='modal-overlay';
-  overlay.innerHTML='<div class="modal"><div class="modal-header"><div class="modal-title"></div><button class="modal-close" onclick="document.getElementById(\'modalOverlay\').classList.remove(\'show\')">×</button></div><div class="modal-tabs"></div><div class="modal-sub">Click to select format:</div><textarea class="modal-text" id="modalText" readonly></textarea><div class="modal-actions"><button class="btn-copy" onclick="copyPrompt()">📋 Copiar</button><button class="btn-copy" style="background:var(--info)" onclick="copyAll()">📦 Copiar Tudo</button><span class="copy-feedback" id="copyFeedback"></span></div></div>';
+  overlay.innerHTML='<div class="modal"><div class="modal-header"><div class="modal-title"></div><button class="modal-close" onclick="document.getElementById('+"'"+'modalOverlay'+"'"').classList.remove('+"'"+'show'+"'"+')">×</button></div><div class="modal-tabs"></div><div class="modal-sub">Click to select format:</div><textarea class="modal-text" id="modalText" readonly></textarea><div class="modal-actions"><button class="btn-copy" onclick="copyPrompt()">📋 Copiar</button><button class="btn-copy" style="background:var(--info)" onclick="copyAll()">📦 Copiar Tudo</button><span class="copy-feedback" id="copyFeedback"></span></div></div>';
   overlay.onclick=function(e){if(e.target===overlay)overlay.classList.remove('show');};
   document.body.appendChild(overlay);
   return overlay;

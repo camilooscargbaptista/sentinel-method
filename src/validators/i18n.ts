@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { BaseValidator } from './base';
 
 /**
@@ -166,7 +167,7 @@ export class I18nValidator extends BaseValidator {
         Math.min(content.length, match.index + 100)
       );
 
-      if (/[`+\$]/.test(context)) {
+      if (/[`+$]/.test(context)) {
         this.metrics.dateFormatting++;
         issues.push(
           this.createIssue(
@@ -185,7 +186,8 @@ export class I18nValidator extends BaseValidator {
    */
   private checkCurrencyFormatting(content: string, issues: any[]) {
     // Símbolos de moeda hardcoded
-    const currencySymbolPattern = /['"`]\s*[\$€£¥₹]\s*['"`]|['"`]R\$['"`]/g;
+    // eslint-disable-next-line no-useless-escape
+    const currencySymbolPattern = /['"`]\s*[$€£¥₹]\s*['"`]|['"`]R\$['"`]/g;
     let match;
 
     while ((match = currencySymbolPattern.exec(content)) !== null) {
@@ -401,7 +403,7 @@ export class I18nValidator extends BaseValidator {
    */
   private readFile(filePath: string): string {
     try {
-      return require('fs').readFileSync(filePath, 'utf-8');
+      return fs.readFileSync(filePath, 'utf-8');
     } catch {
       return '';
     }

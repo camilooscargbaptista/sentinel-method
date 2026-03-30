@@ -231,6 +231,7 @@ describe('CLI: sentinel command', () => {
 
     test('deve mostrar versão do package.json', () => {
       const output = runCli('--version');
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const pkg = require('../package.json');
       expect(output.trim()).toBe(pkg.version);
     });

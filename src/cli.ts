@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import * as path from 'path';
+import * as fs from 'fs';
 import { Sentinel } from './sentinel';
 import {
   PASS,
@@ -46,7 +47,7 @@ async function runValidation(
 
   // ── Salvar report em arquivo (--output) ──
   if (options.output) {
-    const fs = require('fs');
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { Reporter } = require('./reporter');
     const reporter = new Reporter();
 
@@ -68,7 +69,7 @@ const program = new Command();
 program
   .name('sentinel')
   .description('Sentinel Method — Production-Grade Quality Gate for AI-Generated Code')
-  .version((() => { try { return require('../package.json').version; } catch { return '3.0.0'; } })());
+  .version((() => { try { const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8')); return pkg.version; } catch { return '3.0.0'; } })());
 
 program
   .command('validate')
@@ -168,7 +169,6 @@ program
   .description('Initialize Sentinel in the current directory (generates config and ignore files)')
   .option('--force', 'Overwrite existing files', false)
   .action((options: Record<string, any>) => {
-    const fs = require('fs');
     const cwd = process.cwd();
 
     printHeader();
@@ -225,6 +225,7 @@ program
   .option('-t, --testing-threshold <n>', 'Testing threshold for hooks', '80')
   .option('-s, --security-level <level>', 'Security level for hooks', 'strict')
   .action((options: Record<string, any>) => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { HookManager } = require('./hooks');
     const cwd = process.cwd();
     const manager = new HookManager(cwd);

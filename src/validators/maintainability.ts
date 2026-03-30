@@ -137,8 +137,6 @@ export class MaintainabilityValidator extends BaseValidator {
 
   private analyzeMaintainability(sourceDir: string, issues: ValidationIssue[]): MaintainabilityMetrics {
     let totalCyclomaticComplexity = 0;
-    let complexFunctions = 0;
-    let longFunctions = 0;
     let namingIssues = 0;
     let missingDocs = 0;
     let functionCount = 0;
@@ -168,7 +166,6 @@ export class MaintainabilityValidator extends BaseValidator {
             totalCyclomaticComplexity += complexity;
 
             if (complexity > this.maxCyclomaticComplexity) {
-              complexFunctions++;
               issues.push(this.createIssue('warning', 'HIGH_COMPLEXITY',
                 `Function has cyclomatic complexity of ${complexity} (threshold: ${this.maxCyclomaticComplexity})`,
                 { file, line: lineNum + 1, suggestion: 'Consider breaking down this function into smaller, more focused functions' },
@@ -178,7 +175,6 @@ export class MaintainabilityValidator extends BaseValidator {
             // Verificar comprimento da função
             const funcLength = this.getFunctionLength(lines, lineNum);
             if (funcLength > this.maxFunctionLength) {
-              longFunctions++;
               issues.push(this.createIssue('warning', 'LONG_FUNCTION',
                 `Function is ${funcLength} lines long (threshold: ${this.maxFunctionLength})`,
                 { file, line: lineNum + 1, suggestion: 'Consider refactoring into smaller functions with single responsibility' },

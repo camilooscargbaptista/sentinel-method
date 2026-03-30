@@ -96,7 +96,9 @@ export class TestingValidator extends BaseValidator {
 
         // Contabilizar assertions (expect, assert, should patterns)
         const expectCount = (content.match(/expect\s*\(/g) || []).length;
+        // eslint-disable-next-line no-useless-escape
         const assertCount = (content.match(/assert\s*[\.(]/g) || []).length;
+        // eslint-disable-next-line no-useless-escape
         const shouldCount = (content.match(/\.should\s*[\.(]/g) || []).length;
         assertions += expectCount + assertCount + shouldCount;
 

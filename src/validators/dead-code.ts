@@ -204,7 +204,7 @@ export class DeadCodeValidator extends BaseValidator {
       if (/(?:function\s+\w+|(?:async\s+)?[a-zA-Z_]\w*\s*)\s*\([^)]*\)\s*[:{]/.test(line)) {
         // Procurar pelo corpo da função
         let braceCount = (line.match(/{/g) || []).length - (line.match(/}/g) || []).length;
-        let bodyStartLine = i;
+        const bodyStartLine = i;
         let hasContent = false;
 
         // Checar se há código no corpo

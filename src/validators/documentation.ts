@@ -158,7 +158,7 @@ export class DocumentationValidator extends BaseValidator {
     }
   }
 
-  /** Verifica se a linha anterior contém um bloco JSDoc (/** ... *​/) */
+  /** Verifica se a linha anterior contém um bloco JSDoc */
   private hasJSDoc(lines: string[], lineIndex: number): boolean {
     // Procurar para trás por JSDoc ou comentário inline
     for (let i = lineIndex - 1; i >= Math.max(0, lineIndex - 10); i--) {

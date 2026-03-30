@@ -778,11 +778,11 @@ describe('I18nValidator', () => {
 
   test('deve processar arquivo com styles', () => {
     const file = path.join(testDir, 'css-currency.ts');
-    fs.writeFileSync(file, `
-      const styles = {
-        price: '\$100'
-      };
-    `);
+    fs.writeFileSync(file, [
+      'const styles = {',
+      "  price: '$100'",
+      '};',
+    ].join('\n'));
 
     const validator = new I18nValidator(config);
     const result = validator.validate(testDir);

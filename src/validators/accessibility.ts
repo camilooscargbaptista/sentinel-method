@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { BaseValidator } from './base';
 import {
   checkMissingAltAttributes,
@@ -210,7 +211,7 @@ export class AccessibilityValidator extends BaseValidator {
    */
   private readFile(filePath: string): string | null {
     try {
-      return require('fs').readFileSync(filePath, 'utf-8');
+      return fs.readFileSync(filePath, 'utf-8');
     } catch {
       return null;
     }

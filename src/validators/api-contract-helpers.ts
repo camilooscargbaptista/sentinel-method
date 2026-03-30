@@ -33,6 +33,7 @@ export function extractRouteHandlers(
 
   // NestJS decorators: @Get/@Post/@Put/@Delete
   const nestPattern =
+    // eslint-disable-next-line no-useless-escape
     /@(Get|Post|Put|Delete|Patch)\s*\(\s*['"`]?([^'"`\)]*?)['"`]?\s*\)\s*(?:async\s+)?(\w+)\s*\([^)]*\)\s*\{([^}]*)\}/gs;
 
   while ((match = nestPattern.exec(content)) !== null) {

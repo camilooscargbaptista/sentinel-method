@@ -116,7 +116,7 @@ export class TypeSafetyValidator extends BaseValidator {
 
           // 3. Non-null assertions (severity: warning)
           // Padrão: `variable!.property` ou `variable!`
-          if (/\w+!\s*[\.\[\(]|\w+!\s*;|\w+!\s*$/.test(line) && !trimmed.startsWith('//')) {
+          if (/\w+!\s*[.[(]|\w+!\s*;|\w+!\s*$/.test(line) && !trimmed.startsWith('//')) {
             nonNullAssertions++;
             issues.push(this.createIssue('warning', 'NON_NULL_ASSERTION',
               'Non-null assertion operator (!) detected',
@@ -244,8 +244,8 @@ export class TypeSafetyValidator extends BaseValidator {
         // Validação mais rigorosa: tem parênteses mas sem tipo
         if (/function\s+\w+\s*\(/.test(trimmed) || /const\s+\w+\s*=\s*\(/.test(trimmed)) {
           // Verificar se tem parâmetros sem tipo
-          const hasParams = /\(\s*\w+\s*[,\)]/.test(line);
-          const hasTypes = /:\s*[\w\[\]\<\>]+/.test(line);
+          const hasParams = /\(\s*\w+\s*[,)]/.test(line);
+          const hasTypes = /:\s*[\w[\]<>]+/.test(line);
           if (hasParams && !hasTypes) {
             implicitAnyParameters++;
             issues.push(this.createIssue('warning', 'IMPLICIT_ANY_PARAMETER',

@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { BaseValidator } from './base';
 import {
   extractRouteHandlers,
@@ -295,7 +296,6 @@ export class ApiContractValidator extends BaseValidator {
    */
   private readFile(filePath: string): string | null {
     try {
-      const fs = require('fs');
       return fs.readFileSync(filePath, 'utf-8');
     } catch {
       return null;
