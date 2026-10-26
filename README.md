@@ -34,6 +34,8 @@
 
 ---
 
+> **Sentinel runs in production inside [Guilda](https://www.arkolabs.ia.br/guilda/)**, the autonomous AI dev team by [Arko Labs](https://www.arkolabs.ia.br). Every change Guilda ships passes Sentinel's quality gates before a human merges it. [Book a demo →](https://www.arkolabs.ia.br/guilda/)
+
 ## The Problem
 
 AI generates code fast. But **fast != safe**. Every unchecked commit is a potential security breach, a performance regression, an accessibility violation, or a maintenance nightmare waiting to happen.
@@ -419,6 +421,22 @@ npm run test:watch      # Watch mode
 | `ErrorHandlingValidator` | Error resilience patterns |
 | `TypeSafetyValidator` | TypeScript strictness enforcement |
 | `DeadCodeValidator` | Unused code elimination |
+
+---
+
+## Sentinel in production: Guilda
+
+Sentinel is the quality backbone of **[Guilda](https://www.arkolabs.ia.br/guilda/)**, a complete autonomous development team of AI agents built by [Arko Labs](https://www.arkolabs.ia.br) for banks, fintechs and payment platforms.
+
+- **PO and Architect agents** write the contract: stories with Gherkin acceptance criteria and an ADR
+- **QA writes failing acceptance tests first**; dev agents take each card from red to green
+- **Sentinel gates** block leaked secrets, coverage drops, failing lint and new vulnerabilities on the exact commit
+- **A read-only reviewer** checks the diff; every action lands in a tamper-evident audit chain
+- **No agent merges or deletes files**: you get a ready PR with its contract, proofs and AI cost
+
+In one real day of operation: 5 deliveries for US$ 38.91 in AI.
+
+👉 [See Guilda working on a sample project](https://www.arkolabs.ia.br/guilda/)
 
 ---
 
